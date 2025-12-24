@@ -136,10 +136,11 @@ function disableButton(disabled) {
 function showExhausted() {
   setHidden(els.ticket, true);
   setHidden(els.exhausted, false);
+  setHidden(els.backBtn, true);
   disableButton(false);
   setBoothCTA("Time to Watch…");
   if (els.description) els.description.textContent = "You've seen the whole list — hit Reset & Shuffle to play again.";
-}
+} 
 
 function hideExhausted() {
   setHidden(els.exhausted, true);
@@ -149,6 +150,7 @@ function startCountdownThenShowTicket() {
   hideExhausted();
   setHidden(els.ticket, true);
   setHidden(els.showtime, true);
+  setHidden(els.backBtn, true);
 
   disableButton(true);
   setHidden(els.watchBtn, true);
@@ -200,6 +202,7 @@ function startCountdownThenShowTicket() {
 
       renderMovie(movie);
       setHidden(els.ticket, false);
+      setHidden(els.backBtn, false);
       // Keep the booth hidden while showing the ticket. Click the ticket to pick again.
 // if that was the last movie, show exhausted panel after showing ticket
       if (unwatched.length === 0) {
@@ -210,10 +213,11 @@ function startCountdownThenShowTicket() {
   };
 
   const timer = setInterval(tick, 1000);
-}
+} 
 
 function init() {
   updateRemainingUI();
+  setHidden(els.backBtn, true);
   // If list already exhausted from a previous session, show reset UI.
   if (unwatched.length === 0) {
     showExhausted();
@@ -241,6 +245,7 @@ function init() {
   if (els.backBtn) {
     els.backBtn.addEventListener("click", () => {
       setHidden(els.ticket, true);
+      setHidden(els.backBtn, true);
       setHidden(els.watchBtn, false);
       disableButton(false);
       setBoothCTA("Time to Watch…");
@@ -253,6 +258,7 @@ els.resetBtn.addEventListener("click", () => {
     hideExhausted();
     updateRemainingUI();
     setHidden(els.ticket, true);
+    setHidden(els.backBtn, true);
     setHidden(els.countdown, true);
     setHidden(els.showtime, true);
     setHidden(els.watchBtn, false);
