@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinema — Time to Watch</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="stage">
+    <header class="brand" aria-label="Cinema">
+      <span class="brand-dot"></span>
+      <span class="brand-text">CINEMA</span>
+    </header>
+
+    <section class="panel" aria-live="polite">
+      <button id="watchBtn" class="booth-btn" type="button" aria-label="Time to Watch">
+        <span class="booth-frame" aria-hidden="true"></span>
+        <span class="booth-lamp" aria-hidden="true"></span>
+
+        <span class="booth-sign" aria-hidden="true">TICKET BOOTH</span>
+
+        <span class="booth-gate" aria-hidden="true">
+          <span class="gate-bar"></span><span class="gate-bar"></span><span class="gate-bar"></span><span class="gate-bar"></span>
+          <span class="gate-bar"></span><span class="gate-bar"></span><span class="gate-bar"></span><span class="gate-bar"></span>
+        </span>
+
+        <span class="booth-cta">Time to Watch…</span>
+      </button>
+<div id="countdown" class="countdown hidden" role="status" aria-live="assertive"></div>
+      <div id="showtime" class="showtime hidden">SHOWTIME!</div>
+
+      <article id="ticket" class="ticket hidden" aria-label="Selected movie ticket">
+        <div class="ticket-inner">
+          <div class="perf-overlay" aria-hidden="true"></div>
+          <div class="ticket-top">
+            <div class="ticket-stub">
+              <div class="stub-label">ADMIT ONE</div>
+              <div class="stub-sub">Tonight’s Pick</div>
+            </div>
+            <div class="ticket-title" id="movieTitle">—</div>
+          </div>
+
+          <div class="ticket-divider" aria-hidden="true"></div>
+
+          <div class="ticket-meta">
+            <div class="meta-row">
+              <span class="meta-k">Director</span>
+              <span class="meta-v" id="movieDirector">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-k">Runtime</span>
+              <span class="meta-v" id="movieRuntime">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-k">Genre</span>
+              <span class="meta-v" id="movieGenre">—</span>
+            </div>
+          </div>
+
+          <div class="ticket-desc" id="movieDescription">
+            <p class="desc-text">Tap the ticket to reveal tonight’s pick and the vibe you’re in for — moody, playful, or pulse-pounding.</p>
+          </div>
+
+          <footer class="ticket-footer">
+            <span class="footer-left">No repeats until all are played</span>
+            <span class="footer-right" id="remainingCount">—</span>
+          </footer>
+        </div>
+
+        <!-- Decorative film-strip edges --></article>
+
+      <div id="exhausted" class="exhausted hidden">
+        <div class="exhausted-title">That’s all 40 🎬</div>
+        <div class="exhausted-sub">Want to reshuffle the whole list?</div>
+        <button id="resetBtn" class="reset-btn" type="button">Reset & Shuffle</button>
+      </div>
+
+      <p class="hint">Tip: click the ticket to pick again. Refresh-proof mode is on (localStorage). Use “Reset & Shuffle” to start over.</p>
+    </section>
+  </main>
+
+  <script src="movies.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
