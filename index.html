@@ -27,7 +27,16 @@
 
         <span class="booth-cta">Time to Watch…</span>
       </button>
-<div id="countdown" class="countdown hidden" role="status" aria-live="assertive"></div>
+      <div id="countdown" class="countdown hidden" role="status" aria-live="assertive">
+        <div class="cigarette" aria-hidden="true">
+          <div class="cig-body">
+            <div class="cig-burn" id="cigBurn" style="width:0%"></div>
+            <div class="cig-filter"></div>
+            <div class="cig-ember" id="cigEmber" aria-hidden="true"></div>
+          </div>
+        </div>
+        <span class="sr-only" id="countdownLabel">10</span>
+      </div>
       <div id="showtime" class="showtime hidden">SHOWTIME!</div>
 
       <article id="ticket" class="ticket hidden" aria-label="Selected movie ticket">
@@ -56,6 +65,10 @@
               <span class="meta-k">Genre</span>
               <span class="meta-v" id="movieGenre">—</span>
             </div>
+            <div class="meta-row">
+              <span class="meta-k">Year</span>
+              <span class="meta-v" id="movieYear">—</span>
+            </div>
           </div>
 
           <div class="ticket-desc" id="movieDescription">
@@ -66,17 +79,21 @@
             <span class="footer-left">No repeats until all are played</span>
             <span class="footer-right" id="remainingCount">—</span>
           </footer>
+
+          <div class="ticket-actions">
+            <button id="backBtn" class="back-btn" type="button">Back to Ticket Booth</button>
+          </div>
         </div>
 
         <!-- Decorative film-strip edges --></article>
 
       <div id="exhausted" class="exhausted hidden">
-        <div class="exhausted-title">That’s all 40 🎬</div>
+        <div class="exhausted-title">That’s all 🎬</div>
         <div class="exhausted-sub">Want to reshuffle the whole list?</div>
         <button id="resetBtn" class="reset-btn" type="button">Reset & Shuffle</button>
       </div>
 
-      <p class="hint">Tip: click the ticket to pick again. Refresh-proof mode is on (localStorage). Use “Reset & Shuffle” to start over.</p>
+
     </section>
   </main>
 

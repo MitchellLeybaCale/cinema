@@ -4,17 +4,22 @@
 const els = {
   watchBtn: document.getElementById("watchBtn"),
   countdown: document.getElementById("countdown"),
+  countdownLabel: document.getElementById("countdownLabel"),
   showtime: document.getElementById("showtime"),
   ticket: document.getElementById("ticket"),
   title: document.getElementById("movieTitle"),
   director: document.getElementById("movieDirector"),
   runtime: document.getElementById("movieRuntime"),
   genre: document.getElementById("movieGenre"),
+  year: document.getElementById("movieYear"),
   description: document.getElementById("movieDescription"),
   remaining: document.getElementById("remainingCount"),
   serial: document.getElementById("ticketSerial"),
   exhausted: document.getElementById("exhausted"),
   resetBtn: document.getElementById("resetBtn"),
+  backBtn: document.getElementById("backBtn"),
+  cigBurn: document.getElementById("cigBurn"),
+  cigEmber: document.getElementById("cigEmber"),
 };
 
 const STORAGE_KEY = "cinema_unwatched_indices_v1";
@@ -99,6 +104,7 @@ function renderMovie(movie) {
   els.director.textContent = movie.director;
   els.runtime.textContent = `${movie.runtime} min`;
   els.genre.textContent = movie.genre;
+  if (els.year) els.year.textContent = movie.year ? movie.year : '—';
   if (els.serial) els.serial.textContent = randomSerial(6);
 
   if (els.description) {
@@ -147,19 +153,37 @@ function startCountdownThenShowTicket() {
   disableButton(true);
   setHidden(els.watchBtn, true);
 
-  let n = 10;
+  const total = 10;
+  let n = total;
   els.countdown.textContent = String(n);
+  if (els.countdownLabel) els.countdownLabel.textContent = String(n);
   setHidden(els.countdown, false);
+
+  // reset cigarette visuals
+  if (els.cigBurn) els.cigBurn.style.width = "0%";
+  if (els.cigEmber) { els.cigEmber.style.opacity = "1"; els.cigEmber.style.left = "0"; }
 
   const tick = () => {
     n -= 1;
     if (n > 0) {
+      const elapsed = total - n; // 1..9
+      const pct = Math.round((elapsed / total) * 100);
       els.countdown.textContent = String(n);
+      if (els.countdownLabel) els.countdownLabel.textContent = String(n);
+
+      // animate burn and ember
+      if (els.cigBurn) els.cigBurn.style.width = `${pct}%`;
+      if (els.cigEmber) els.cigEmber.style.left = `calc(${pct}% - 7px)`;
       return;
     }
 
     // finished countdown
     clearInterval(timer);
+
+    // ensure burn completes
+    if (els.cigBurn) els.cigBurn.style.width = `100%`;
+    if (els.cigEmber) { els.cigEmber.style.left = `calc(100% - 7px)`; els.cigEmber.style.opacity = "0"; }
+
     setHidden(els.countdown, true);
 
     // SHOWTIME flash
@@ -212,6 +236,18 @@ function init() {
     if (unwatched.length === 0) { showExhausted(); return; }
     startCountdownThenShowTicket();
   });
+
+  // Back to booth button: hide ticket and restore booth CTA
+  if (els.backBtn) {
+    els.backBtn.addEventListener("click", () => {
+      setHidden(els.ticket, true);
+      setHidden(els.watchBtn, false);
+      disableButton(false);
+      setBoothCTA("Time to Watch…");
+      if (els.description) els.description.textContent = 'Tap the ticket to reveal tonight\'s pick and the vibe you\'re in for.';
+    });
+  }
+
 els.resetBtn.addEventListener("click", () => {
     unwatched = resetUnwatched();
     hideExhausted();

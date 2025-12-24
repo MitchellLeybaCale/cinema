@@ -2,22 +2,22 @@
 :root{
   --ticket-mask: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%201000%20420%22%20preserveAspectRatio%3D%22none%22%3E%0A%20%20%3Cpath%20fill%3D%22white%22%20d%3D%22%0A%20%20%20%20M%2040%200%0A%20%20%20%20H%20960%0A%20%20%20%20Q%201000%200%201000%2040%0A%0A%20%20%20%20L%201000%2060%0A%20%20%20%20L%20970%2080%0A%20%20%20%20L%201000%20100%0A%20%20%20%20L%20970%20120%0A%20%20%20%20L%201000%20140%0A%20%20%20%20L%20970%20160%0A%20%20%20%20L%201000%20180%0A%20%20%20%20L%20970%20200%0A%20%20%20%20L%201000%20220%0A%20%20%20%20L%20970%20240%0A%20%20%20%20L%201000%20260%0A%20%20%20%20L%20970%20280%0A%20%20%20%20L%201000%20300%0A%20%20%20%20L%20970%20320%0A%20%20%20%20L%201000%20340%0A%20%20%20%20L%20970%20360%0A%20%20%20%20L%201000%20380%0A%0A%20%20%20%20Q%201000%20420%20960%20420%0A%20%20%20%20H%2040%0A%20%20%20%20Q%200%20420%200%20380%0A%0A%20%20%20%20L%200%20360%0A%20%20%20%20L%2030%20340%0A%20%20%20%20L%200%20320%0A%20%20%20%20L%2030%20300%0A%20%20%20%20L%200%20280%0A%20%20%20%20L%2030%20260%0A%20%20%20%20L%200%20240%0A%20%20%20%20L%2030%20220%0A%20%20%20%20L%200%20200%0A%20%20%20%20L%2030%20180%0A%20%20%20%20L%200%20160%0A%20%20%20%20L%2030%20140%0A%20%20%20%20L%200%20120%0A%20%20%20%20L%2030%20100%0A%20%20%20%20L%200%2080%0A%20%20%20%20L%2030%2060%0A%20%20%20%20L%200%2040%0A%0A%20%20%20%20Q%200%200%2040%200%0A%20%20%20%20Z%0A%20%20%22/%3E%0A%3C/svg%3E");
 
-  --bg0:#07070b;
-  --bg1:#0f1016;
-  --text:#f6f1e4;
-  --muted:rgba(246,241,228,.72);
+  --bg0:#2b0a0f; /* deep burgundy */
+  --bg1:#3e0e14; /* slightly lighter */
+  --text:#fff6f2;
+  --muted:rgba(255,230,220,.72);
 
-  /* Gold / brass */
-  --gold0:#f6e7b2;
-  --gold1:#d8b75b;
-  --gold2:#b78a2c;
-  --gold3:#7a5717;
+  /* Warm brass */
+  --gold0:#e6caa4;
+  --gold1:#caa05a;
+  --gold2:#9d6f32;
+  --gold3:#6b4419;
 
   /* Ticket */
-  --paper0:#f3e0b8;
-  --paper1:#e8c98f;
+  --paper0:#f6e9df;
+  --paper1:#eed8c0;
   --ink:#1a1a1a;
-  --red:#b01822;
+  --accent:#8b1f2e; /* deep wine accent */
 
   --shadow: 0 26px 70px rgba(0,0,0,.62);
   --display: "Clarendon", "Clarendon BT", "Bookman Old Style", "Georgia", serif;
@@ -30,8 +30,8 @@ body{
   font-family: var(--display);
   color:var(--text);
   background:
-    radial-gradient(1200px 650px at 50% 20%, rgba(216,183,91,.12), transparent 55%),
-    radial-gradient(900px 550px at 50% 78%, rgba(176,24,34,.10), transparent 60%),
+    radial-gradient(1200px 650px at 50% 20%, rgba(202,64,90,.10), transparent 55%),
+    radial-gradient(900px 550px at 50% 78%, rgba(139,31,46,.12), transparent 60%),
     linear-gradient(180deg, var(--bg0), var(--bg1));
   display:grid;
   place-items:center;
@@ -236,20 +236,20 @@ body{
 .ticket-desc{
   margin: 12px 0 6px;
   padding: 12px 14px;
-  background: linear-gradient(180deg, rgba(255,247,233,.46), rgba(255,247,227,.18));
+  background: linear-gradient(180deg, rgba(255,245,240,.46), rgba(255,240,230,.18));
   border-radius: 10px;
-  border: 1px dashed rgba(122,87,23,.14);
+  border: 1px dashed rgba(122,87,23,.08);
   color: var(--ink);
   font-size: 14px;
   line-height:1.45;
-  box-shadow: inset 0 -6px 18px rgba(0,0,0,.06);
+  box-shadow: inset 0 -6px 18px rgba(0,0,0,.05);
 }
 
 .ticket-vibe{
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: .12em;
-  color: var(--gold2);
+  color: var(--accent);
   font-weight: 900;
   margin-bottom: 6px;
 }
@@ -269,6 +269,21 @@ body{
   font-weight: 700;
   text-transform: uppercase;
 }
+
+/* Cigarette loader */
+.cigarette{ display:flex; align-items:center; justify-content:center; gap:10px; margin: 12px auto; }
+.cig-body{ position:relative; width:min(360px,86%); height:16px; background: linear-gradient(90deg,#fff6e8,#f2ddd0); border-radius:10px; overflow:hidden; border:1px solid rgba(0,0,0,.06)}
+.cig-filter{ position:absolute; right:0; top:0; bottom:0; width:18%; background: linear-gradient(90deg,#f0d6c0,#d0b091); }
+.cig-burn{ position:absolute; left:0; top:0; bottom:0; background: linear-gradient(90deg, rgba(50,50,50,0.98), rgba(120,120,120,0.6)); width:0%; height:100%; transition:width 0.9s linear; }
+.cig-ember{ position:absolute; top:50%; transform:translateY(-50%); left:0; width:14px; height:14px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #ffb16a, #ff5a00); box-shadow: 0 0 14px rgba(255,90,0,.9); animation: flicker .24s infinite; transition:left 0.9s linear, opacity .2s linear; }
+@keyframes flicker{ 0%{ transform:scale(1); opacity:1 } 50%{ transform:scale(.96); opacity:.85 } 100%{ transform:scale(1); opacity:1 }}
+
+.sr-only{ position:absolute; left:-9999px; }
+
+.ticket-actions{ display:flex; justify-content:center; margin-top:12px }
+.back-btn{ border:none; cursor:pointer; background: linear-gradient(180deg, var(--accent), #6b1b28); color:var(--text); padding:10px 14px; border-radius:8px; font-weight:900; letter-spacing:.02em }
+.back-btn:hover{ opacity:.95 }
+
 
 
 
