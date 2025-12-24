@@ -34,8 +34,10 @@ jobs:
       - name: Prepare Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+        # Use the latest upload-pages-artifact action to avoid deprecated internal dependencies
+        uses: actions/upload-pages-artifact@v2
         with:
           path: ./
       - name: Deploy
+        # deploy-pages@v1 is fine; update to v2 if available in the future
         uses: actions/deploy-pages@v1
