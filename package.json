@@ -1,0 +1,7 @@
+{
+  "name": "cinema",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node test/picker.test.js"
+  }
+}
