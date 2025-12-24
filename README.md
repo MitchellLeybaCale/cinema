@@ -36,3 +36,28 @@ This project is configured to auto-deploy to **GitHub Pages** on push to `main` 
 `https://MitchellLeybaCale.github.io/cinema/`
 
 If you prefer a custom domain or want me to fully automate image icons/manifests for a PWA, say the word and I'll add them.
+
+---
+
+## Rebuild & deploy (quick)
+
+Local preview (fast):
+
+```bash
+# serve locally
+python -m http.server 8000
+# then open http://127.0.0.1:8000 in your browser
+```
+
+Commit & publish to GitHub Pages (auto-deploy):
+
+```bash
+git add -A
+git commit -m "chore: update movie descriptions"
+git push origin main
+```
+
+The GitHub Actions workflow runs the tests and deploys to Pages; check the run at:
+https://github.com/MitchellLeybaCale/cinema/actions
+
+If you need me to trigger the deploy for you I can create or push a commit.

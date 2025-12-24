@@ -99,8 +99,21 @@ function renderMovie(movie) {
   els.director.textContent = movie.director;
   els.runtime.textContent = `${movie.runtime} min`;
   els.genre.textContent = movie.genre;
-  if (els.description) els.description.textContent = getDescription(movie);
   if (els.serial) els.serial.textContent = randomSerial(6);
+
+  if (els.description) {
+    // Prefer movie-specific copy if present
+    if (movie.vibe || movie.blurb || movie.goodFor) {
+      els.description.innerHTML = `
+        <div class="ticket-vibe">${movie.vibe ? movie.vibe : ''}</div>
+        <p class="desc-text tagline">${movie.blurb ? movie.blurb : getDescription(movie)}</p>
+        <div class="desc-goodfor">Good for: ${movie.goodFor ? movie.goodFor : ''}</div>
+      `;
+    } else {
+      els.description.textContent = getDescription(movie);
+    }
+  }
+
   updateRemainingUI();
 }
 
